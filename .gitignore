@@ -1,2 +1,4 @@
 .env
 .docker_build/
+static/*
+node_modules

@@ -1,0 +1,14 @@
+{
+  "name": "go-getting-started",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/heroku/go-getting-started",
+  "author": "Hunter Loftis <hunter@hunterloftis.com>",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "mkdir -p static && lessc assets/main.less static/main.css && cp -r assets/*.png static"
+  },
+  "dependencies": {
+    "less": "^2.7.2"
+  }
+}
