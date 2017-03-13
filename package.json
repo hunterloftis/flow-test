@@ -6,6 +6,7 @@
   "author": "Hunter Loftis <hunter@hunterloftis.com>",
   "license": "MIT",
   "scripts": {
+    "heroku-prebuild": "echo 'Yarn cache dir:' && yarn cache dir",
     "postinstall": "mkdir -p static && lessc assets/main.less static/main.css && cp -r assets/*.png static",
     "test": "node test/assets.test.js"
   },
