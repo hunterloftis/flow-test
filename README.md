@@ -1,39 +1,51 @@
+# Flow Test
 
-# go-getting-started
+## Heroku Button
 
-A barebones Go app, which can easily be deployed to Heroku.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-This application supports the [Getting Started with Go on Heroku](https://devcenter.heroku.com/articles/getting-started-with-go) article - check it out.
+This will work (app.json)
 
-## Running Locally
+## Review Apps
 
-Make sure you have [Go](http://golang.org/doc/install) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+This will work (app.json)
 
-```sh
-$ go get -u github.com/heroku/go-getting-started
-$ cd $GOPATH/src/github.com/heroku/go-getting-started
-$ heroku local
+The apps will look correct in review, but a subsequent promotion will break them.
+
+## CI
+
+This will work (app.json)
+
+All tests will pass, but then a subsequent promotion will break.
+
+## Pipeline promotion
+
+This will break on promotion.
+
+To fix it, you'll have to run:
+
+```
+$ heroku buildpacks:set heroku/nodejs -a pipeline-app-name
+$ heroku buildpacks:add heroku/go -a pipeline-app-name
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+## Local git-based deploy
 
-You should also install [Godep](https://github.com/tools/godep) if you are going to add any dependencies to the sample app.
+This will break:
 
-## Deploying to Heroku
-
-```sh
+```
+$ git clone https://github.com/hunterloftis/flow-test.git
+$ cd flow-test
 $ heroku create
 $ git push heroku master
 $ heroku open
 ```
 
-or
+To fix it, you'll have to run:
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-
-## Documentation
-
-For more information about using Go on Heroku, see these Dev Center articles:
-
-- [Go on Heroku](https://devcenter.heroku.com/categories/go)
+```
+$ heroku buildpacks:set heroku/nodejs -a pipeline-app-name
+$ heroku buildpacks:add heroku/go -a pipeline-app-name
+$ git commit -am 'fix buildpacks' --allow-empty
+$ git push heroku master
+```
