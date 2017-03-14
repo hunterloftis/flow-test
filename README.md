@@ -29,6 +29,8 @@ $ heroku buildpacks:set heroku/nodejs -a pipeline-app-name
 $ heroku buildpacks:add heroku/go -a pipeline-app-name
 ```
 
+(even though this data is [already specififed in the app](app.json))
+
 ## Local git-based deploy
 
 This will break:
@@ -49,3 +51,5 @@ $ heroku buildpacks:add heroku/go -a pipeline-app-name
 $ git commit -am 'fix buildpacks' --allow-empty
 $ git push heroku master
 ```
+
+(even though this data is [already specififed in the app](app.json))
